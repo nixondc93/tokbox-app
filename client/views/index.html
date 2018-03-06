@@ -1,0 +1,42 @@
+<!!DOCTYPE html>
+<html ng-app="chatApp">
+  <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>My App</title>
+  <link rel="stylesheet" href="app.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" integrity="sha256-IMA0EIgLE53aSU7jFyLtX6u4hqMZ6AeSxlSgiBQ+620=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js" integrity="sha256-w3THDDhkzdjMczax74BBlkhjBxWIGisjArsP5wIQSHc=" crossorigin="anonymous"></script>
+  <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  </head>
+  <body>
+    <div class="col-md-8 col-md-offset-2" ng-controller="chatAppController as chat">
+      <div class="row container nav-justified">
+        <h1>My Meeting App</h1>
+      </div>
+      <div>  
+        <div>
+            <button ng-show="!chatStarted" class="btn btn-primary" ng-click="getSession();">Click Here to open a meeting room</button>
+            <h4>Join a meeting by submitting your session ID below</h4>
+            <form ng-submit="jionMeeting()">
+              <input type="text" ng-model="text" placeholder="Session ID" value="">
+              <input type="submit" value="Submit">
+            </form >
+        </div>
+          <div ng-show="chatStarted" id="videos">
+              <div>
+                <p>Invite others to join! Just click the link to copy</p>
+                <div ng-click=""><b>{{sessionId}}</b></div>
+              </div>
+              <div id="subscriber"></div>
+              <div id="publisher"></div>
+              <button ng-click="disconnect();">Disconnect</button>
+          </div>
+
+          
+      </div>  
+    </div>
+  </body>
+</html>
